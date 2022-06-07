@@ -1,0 +1,16 @@
+<head>
+	<script src="genreFinderToolScript.js"></script>
+	<script>
+		var playlistGenres = '<%- playlistGenres %>'
+	</script>
+</head>
+<body onload="drawGenres(playlistGenres)">
+	<h2>find spotify playlist genre</h2>
+	<form action="/find-genre" method="post">
+		<input type="text" name="link" placeholder="playlist link" value ="https://open.spotify.com/playlist/2mbDaBZ0mpaQ5alXDDYzeE?si=13b01195f439436d">
+		<input type="submit" value="find (up to 30 sec)">
+	</form>
+	
+	<p> Name: <%= playlistName %> </p>
+	<p> Genres: <%= playlistGenres %> </p>
+</body>
