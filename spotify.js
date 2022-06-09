@@ -1,14 +1,14 @@
-const SpotifyWebApi = require('spotify-web-api-node'); 
+const SpotifyWebApi = require('spotify-web-api-node');
 // link.substring(34, 56)
 
 var spotifyApi = new SpotifyWebApi({
 	clientId: process.env.SPOTIFY_CLIENT_ID,
-  	clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+	clientSecret: process.env.SPOTIFY_CLIENT_SECRET
 });
 
 async function authorize() {
 	const authorizationResponse = await spotifyApi.clientCredentialsGrant();
-    spotifyApi.setAccessToken(authorizationResponse.body.access_token);
+	spotifyApi.setAccessToken(authorizationResponse.body.access_token);
 	// console.log(authorizationResponse.body.access_token);
 }
 
@@ -18,6 +18,7 @@ async function fetchPlaylistInfoAsync(playlistId) {
 	let tracksWithArtists = getTrackArtists(playlistData);
 	let playlistInfo = {
 		name: playlistData.body.name,
+		image: playlistData.body.images[0].url,
 		genres: await getPlaylistGenresAsync(tracksWithArtists)
 	}
 
@@ -65,7 +66,7 @@ async function getPlaylistGenresAsync(tracksWithArtists) {
 		trackWithDistinctGenres = trackWithGenre.filter(function (item, pos) {
 			return trackWithGenre.indexOf(item) == pos;
 		});
-		
+
 		tracksWithGenres.push(trackWithDistinctGenres);
 	}
 

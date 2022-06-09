@@ -1,0 +1,49 @@
+h2 {
+	font-size: 40px;
+	color: #333333;
+}
+
+p {
+	font-size: 25px;
+}
+
+body {
+	padding: 30px;
+	font-family: "Consolas";
+	background-color: #EEEEEE;
+}
+
+hr {
+	border: 1px solid #ccc;
+	margin: 30px 0 30px 0;
+}
+
+img {
+	width: 233px;
+	height: 233px;
+}
+
+.green {
+	color: rgb(30 215 96);
+}
+
+.percentage {
+	font-size: 18px;
+}
+
+.input-text-style {
+	width: 1000px;
+	height: 50px;
+	font-size: 25px;
+}
+
+.input-submit-style {
+	height: 50px;
+	width: 120px;
+	font-size: 25px;
+}
+
+.section-title {
+	font-weight: bold;
+	font-size: 30px;
+}

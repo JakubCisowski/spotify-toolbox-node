@@ -1,16 +1,22 @@
 <head>
-	<script src="genreFinderToolScript.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
 	<script>
 		var playlistGenres = '<%- playlistGenres %>'
+		var playlistImage = '<%- playlistImageUrl %>'
 	</script>
 </head>
-<body onload="drawGenres(playlistGenres)">
-	<h2>find spotify playlist genre</h2>
+
+<body onload="drawGenres(playlistGenres, playlistImage)">
+	<h2><span class="green">spotify</span> toolbox • find playlist genre</h2>
+
 	<form action="/find-genre" method="post">
-		<input type="text" name="link" placeholder="playlist link" value ="https://open.spotify.com/playlist/2mbDaBZ0mpaQ5alXDDYzeE?si=13b01195f439436d">
-		<input type="submit" value="find (up to 30 sec)">
+		<input type="text" name="link" placeholder="spotify playlist link" class="input-text-style"
+			value="https://open.spotify.com/playlist/2mbDaBZ0mpaQ5alXDDYzeE?si=13b01195f439436d">
+		<input type="submit" class="input-submit-style" value="analyze">
 	</form>
-	
-	<p> Name: <%= playlistName %> </p>
-	<p> Genres: <%= playlistGenres %> </p>
+	<hr>
+	<p class="section-title">
+		<%= playlistName %>
+	</p>
 </body>

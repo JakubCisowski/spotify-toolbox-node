@@ -1,9 +1,10 @@
-const express = require('express'); 
+const express = require('express');
 const spotify = require('./spotify.js');
 const bodyParser = require('body-parser');
 
 let playlistName = "";
 let playlistGenres = [];
+let playlistImageUrl = "";
 
 var app = express();
 var server = app.listen(3000);
@@ -18,8 +19,9 @@ app.set('views', './website');
 app.get('/', function (req, res) {
 	res.render('index', {
 		playlistName,
+		playlistImageUrl,
 		playlistGenres
-   });
+	});
 });
 
 app.post('/find-genre', async function (req, res) {
@@ -28,11 +30,11 @@ app.post('/find-genre', async function (req, res) {
 
 	spotify.fetchPlaylistInfoAsync(playlistId)
 		.then((playlistInfoArray) => {
-			//console.table(playlistInfoArray);
 			res.render('index', {
 				playlistName: playlistInfoArray.name,
-                playlistGenres:  JSON.stringify(playlistInfoArray.genres)
-		   });
+				playlistImageUrl: playlistInfoArray.image,
+				playlistGenres: JSON.stringify(playlistInfoArray.genres)
+			});
 		})
 		.catch((err) => console.log(err));
 });
