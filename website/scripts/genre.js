@@ -2,15 +2,12 @@ function drawGenres(playlistGenres, playlistImage) {
 	let genres = JSON.parse(playlistGenres);
 	let unclassified = genres.pop(); // Remove unclassified tracks element.
 
-	// let y = document.createElement("p");
-	// y.innerHTML = "genres";
-	// y.classList.add("section-title");
-	// document.body.appendChild(y);
+	let pageContent = document.getElementById("page-content");
 
 	let image = document.createElement("img");
 	image.src = playlistImage;
 	image.src = playlistImage;
-	document.body.appendChild(image);
+	pageContent.appendChild(image);
 
 	let xyz = document.createElement("p");
 
@@ -26,10 +23,10 @@ function drawGenres(playlistGenres, playlistImage) {
 		xyz.innerHTML += '<span class="green"><b>' + genres[i].percentage + '</b><span class="percentage">%</span></span>&emsp;-&emsp;<em>' + genres[i].id + "</em></br>";
 	}
 
-	document.body.appendChild(xyz);
+	pageContent.appendChild(xyz);
 
 	let x = document.createElement("p");
 	x.innerHTML = "<em>unclassified tracks: <b>" + unclassified.percentage + '</b><span class="percentage">%</span></em>';
 	x.style.color = "red";
-	document.body.appendChild(x);
+	pageContent.appendChild(x);
 }

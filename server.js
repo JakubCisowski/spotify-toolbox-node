@@ -2,6 +2,8 @@ const express = require('express');
 const spotify = require('./spotify.js');
 const bodyParser = require('body-parser');
 
+let playlistId = "";
+let playlistLink = "";
 let playlistName = "";
 let playlistGenres = [];
 let playlistImageUrl = "";
@@ -17,24 +19,21 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', './website');
 
 app.get('/', function (req, res) {
-	res.render('index', {
-		playlistName,
-		playlistImageUrl,
-		playlistGenres
-	});
+	res.render('index', {});
 });
 
-app.post('/find-genre', async function (req, res) {
-	let link = req.body.link;
-	playlistId = link.substring(34, 56);
+app.get('/playlist-genre', async function (req, res) {
+	playlistLink = req.query.link;
+	playlistId = playlistLink.trim().substring(34, 56);
 
 	spotify.fetchPlaylistInfoAsync(playlistId)
 		.then((playlistInfoArray) => {
-			res.render('index', {
+			res.render('genre', {
 				playlistName: playlistInfoArray.name,
 				playlistImageUrl: playlistInfoArray.image,
+				playlistLink: playlistLink,
 				playlistGenres: JSON.stringify(playlistInfoArray.genres)
 			});
 		})
-		.catch((err) => console.log(err));
+		.catch(() => res.render('index', {}));
 });

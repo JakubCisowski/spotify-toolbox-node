@@ -1,0 +1,33 @@
+<head>
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<script src="/scripts/genre.js"></script>
+	<script>
+		var playlistGenres = '<%- playlistGenres %>'
+		var playlistImage = '<%- playlistImageUrl %>'
+	</script>
+	<script src="/scripts/global.js"></script>
+</head>
+
+<body onload="drawGenres(playlistGenres, playlistImage)">
+	<h2 onclick="redirectToRoot()"><span class="green">spotify</span> toolbox • find playlist genre</h2>
+
+	<form action="/playlist-genre" method="get">
+		<input type="text" name="link" placeholder="paste spotify playlist link" class="input-text-style" value="">
+		<input type="submit" onclick="wait()" class="input-submit-style" value="analyze">
+	</form>
+
+	<hr>
+
+	<div id="waiting-section" style="display: none;">
+		<div class="dot-windmill"></div>
+		<p> analyzing.. </p>
+		<p> this might take up to 30 sec </p>
+	</div>
+
+	<div id="page-content">
+		<p class="section-title">
+			<%= playlistName %>
+		</p>
+	</div>
+
+</body>

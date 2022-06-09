@@ -1,22 +1,45 @@
 <head>
-	<link rel="stylesheet" href="style.css">
-	<script src="script.js"></script>
-	<script>
-		var playlistGenres = '<%- playlistGenres %>'
-		var playlistImage = '<%- playlistImageUrl %>'
-	</script>
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<script src="/scripts/global.js"></script>
 </head>
 
-<body onload="drawGenres(playlistGenres, playlistImage)">
-	<h2><span class="green">spotify</span> toolbox • find playlist genre</h2>
+<body>
+	<h2 onclick="redirectToRoot()"><span class="green">spotify</span> toolbox • find playlist genre</h2>
 
-	<form action="/find-genre" method="post">
-		<input type="text" name="link" placeholder="spotify playlist link" class="input-text-style"
+	<form action="/playlist-genre" method="get">
+		<input type="text" name="link" placeholder="paste spotify playlist link" class="input-text-style"
 			value="https://open.spotify.com/playlist/2mbDaBZ0mpaQ5alXDDYzeE?si=13b01195f439436d">
-		<input type="submit" class="input-submit-style" value="analyze">
+		<input type="submit" onclick="wait()" class="input-submit-style" value="analyze">
+
 	</form>
+
 	<hr>
-	<p class="section-title">
-		<%= playlistName %>
-	</p>
+
+	<div id="waiting-section" style="display: none;">
+		<div class="dot-windmill"></div>
+		<p> analyzing.. </p>
+		<p> this might take up to 30 sec </p>
+	</div>
+
+	<div id="page-content">
+		<h3> how it works? </h3>
+		<p> 1) copy spotify playlist link </p>
+		<IMG SRC="https://i.imgur.com/qyY8xR4.gif" class="how-it-works-resource" style="width: 847px; height: 631px">
+		<p> 2) paste it and click 'analyze' </p>
+		<IMG SRC="https://i.imgur.com/XqQUuMo.gif" class="how-it-works-resource" style="width: 1142px; height: 137px">
+		<p> 3) wait for the analysis to finish </p>
+		<IMG SRC="https://i.imgur.com/UnSukGJ.gif" class="how-it-works-resource" style="width: 425px; height: 162px">
+		<p> 4) check analysis result </p>
+		<IMG SRC="https://i.imgur.com/JBV1uiX.png" class="how-it-works-resource" style="width: 422px; height: 694px">
+		<p> <span class="green"><b>70</b><span class="percentage">%</span></span> this means that 70% of the tracks* in
+			this playlist are classified by Spotify as a certain genre of music </p>
+		<p> some tracks are <span style="color: red">not classified</span>, it's indicated at the botom of analysis
+			results</p>
+		<p> --- </p>
+		<p class="side-note"><em> * actually Spotify classifies artists rather than tracks, so to be precise 70% means
+				that
+				70% of the tracks
+				in this playlist were created by artists related to the genre </em></p>
+	</div>
+
 </body>
