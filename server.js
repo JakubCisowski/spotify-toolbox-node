@@ -6,7 +6,7 @@ let playlistLink = "";
 
 var app = express();
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 app.use(express.static('website'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
