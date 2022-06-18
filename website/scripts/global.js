@@ -1,8 +1,6 @@
-function wait() {
-	var waitingSection = document.getElementById("waiting-section");
-	var pageContentSection = document.getElementById("page-content");
-	waitingSection.style.display = "block";
-	pageContentSection.style.display = "none";
+function displayWaitingSection() {
+	document.getElementById("waiting-section").style.display = "block";
+	document.getElementById("page-content").style.display = "none";
 }
 
 function redirectToRoot() {

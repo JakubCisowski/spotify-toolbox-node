@@ -1,5 +1,4 @@
 const SpotifyWebApi = require('spotify-web-api-node');
-// link.substring(34, 56)
 
 var spotifyApi = new SpotifyWebApi({
 	clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -9,7 +8,6 @@ var spotifyApi = new SpotifyWebApi({
 async function authorize() {
 	const authorizationResponse = await spotifyApi.clientCredentialsGrant();
 	spotifyApi.setAccessToken(authorizationResponse.body.access_token);
-	// console.log(authorizationResponse.body.access_token);
 }
 
 async function fetchPlaylistInfoAsync(playlistId) {
@@ -104,20 +102,7 @@ async function getPlaylistGenresAsync(tracksWithArtists) {
 	// Add unclassified tracks percentage;
 	genrePercentageArray.push({ id: "unclassified", percentage: unclassifiedTracksPercentage });
 
-
 	return genrePercentageArray;
 }
-
-
-// 	for (var i = 0; i < genres.length && i < 10; i++) {
-// 		if (genres[i].percentage.toFixed(0) > 0) {
-// 			console.log(clc.greenBright(genres[i].percentage.toFixed(0) + '%') + ' \t- ' + genres[i].id);
-// 		}
-// 	}
-// 	if (unclassifiedPercentage > 0) {
-// 		console.log(clc.redBright(unclassifiedPercentage.toFixed(0) + '%') + ' \t- unclassified tracks');
-// 	}
-
-
 
 module.exports.fetchPlaylistInfoAsync = fetchPlaylistInfoAsync;
