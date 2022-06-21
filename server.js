@@ -1,9 +1,6 @@
 const express = require('express');
 const spotify = require('./spotify.js');
 
-let playlistId = "";
-let playlistLink = "";
-
 var app = express();
 
 app.listen(process.env.PORT || 3000);
@@ -17,16 +14,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/playlist-genre', function (req, res) {
-	playlistLink = req.query.link;
-	playlistId = playlistLink.trim().substring(34, 56);
+	let playlistLink = req.query.link;
+	let playlistId = playlistLink.trim().substring(34, 56);
 
 	spotify.fetchPlaylistInfoAsync(playlistId)
 		.then((playlistInfoArray) => {
+			let playlistGenresWithoutApostrophe = JSON.stringify(playlistInfoArray.genres).replace(/'/g, '`');
+
 			res.render('genre', {
 				playlistName: playlistInfoArray.name,
 				playlistImageUrl: playlistInfoArray.image,
-				playlistLink: playlistLink,
-				playlistGenres: JSON.stringify(playlistInfoArray.genres)
+				playlistGenres: playlistGenresWithoutApostrophe
 			});
 		})
 		.catch(() => res.render('index', {}));
