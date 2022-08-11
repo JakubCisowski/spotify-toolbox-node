@@ -7,7 +7,7 @@ Current features: Checking Spotifty playlist genre
 
 ![scr](https://i.imgur.com/vAy84ir.png)
 
-![scr](https://i.imgur.com/SH8CkRY.png)
+![scr](https://i.imgur.com/JBV1uiX.png)
 
 ## How to use it
 Just follow 'how it works' section on home page!
